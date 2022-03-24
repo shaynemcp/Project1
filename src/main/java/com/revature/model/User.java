@@ -35,7 +35,13 @@ public class User {
         this.user_role_id = user_role_id;
     }
 
-  //  -- GETTERS & SETTERS -- //
+    public User(int id, String username, String userpass) {
+        this.id = id;
+        this.username = username;
+        this.userpass = userpass;
+    }
+
+    //  -- GETTERS & SETTERS -- //
 
 
     public int getId() {

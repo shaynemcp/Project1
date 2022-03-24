@@ -12,7 +12,7 @@ public class ReimbDao {
 
     public ReimbDao() {
     }
-
+    //
     public List<Reimbursement> getReimbursementByStatus() throws SQLException {  //Trainer will be able to view pending reimbursements
         List<Reimbursement> reimbursements = new ArrayList<>();
 
