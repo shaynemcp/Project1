@@ -19,6 +19,12 @@ public class Reimbursement extends User{
     public Reimbursement() {
     }
 
+    //Used for method to get Reimbursement by Author id
+    public Reimbursement(int reimb_id, int author) {
+        this.reimb_id = reimb_id;
+        this.author = author;
+    }
+
     public Reimbursement(int reimb_id, int amount, Time submitted, Time resolved, String description, String receipt, int author, int resolver, int reimb_status_id, int reimb_type_id) {
         this.reimb_id = reimb_id;
         this.amount = amount;
@@ -39,7 +45,7 @@ public class Reimbursement extends User{
         return reimb_id;
     }
 
-    public int getAmount() {
+    public static int getAmount() {
         return amount;
     }
 
