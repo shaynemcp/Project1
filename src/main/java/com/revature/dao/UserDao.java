@@ -41,10 +41,10 @@ public class UserDao {
     public User getUserByUserCredentials(String username, String userpass) throws SQLException {
         try (Connection con = ConnectionUtility.getConnection()) {
             String sql = "select users.id, users.username, users.userpass, user_roles.user_role " +
-                    "from users " +
-                    "inner join user_roles " +
-                    "on users.user_role_id = user_roles.ers_user_role_id  " +
-                    "where users.username = ? and users.userpass = ?";
+            "from project1.users " +
+            "inner join project1.user_roles " +
+            "on users.user_role_id = user_roles.ers_user_role_id " +
+            "where users.username = ? and users.userpass = ?;";
             PreparedStatement pstmt = con.prepareStatement(sql);
 
             pstmt.setString(1, username);

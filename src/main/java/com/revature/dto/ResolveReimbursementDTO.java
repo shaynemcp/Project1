@@ -1,14 +1,13 @@
 package com.revature.dto;
 
-import java.io.InputStream;
-import java.sql.Time;
-import java.util.Objects;
-import com.revature.model.User;
 
-public class AddReimbursementDTO {
+//import java.sql.Time;
+import java.util.Objects;
+
+public class ResolveReimbursementDTO {
 
     private int reimb_id;
-    //    private Time submitted;
+//    private Time submitted;
 //    private Time resolved;
     private String description;
     private int author;
@@ -16,10 +15,14 @@ public class AddReimbursementDTO {
     private int status_id;
     private int type_id;
 
-    public AddReimbursementDTO() {
+
+
+
+
+    public ResolveReimbursementDTO() {
     }
 
-    public AddReimbursementDTO(int reimb_id, String description, int author, int resolver, int status_id, int type_id) {
+    public ResolveReimbursementDTO(int reimb_id, String description, int author, int resolver, int status_id, int type_id) {
         this.reimb_id = reimb_id;
         this.description = description;
         this.author = author;
@@ -27,7 +30,6 @@ public class AddReimbursementDTO {
         this.status_id = status_id;
         this.type_id = type_id;
     }
-// -- GETTERS AND SETTERS -- //
 
     public int getReimb_id() {
         return reimb_id;
@@ -77,16 +79,12 @@ public class AddReimbursementDTO {
         this.type_id = type_id;
     }
 
-
-    // --EQUALS AND HASHCODE -- //
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AddReimbursementDTO that = (AddReimbursementDTO) o;
-        return reimb_id == that.reimb_id && author == that.author && resolver == that.resolver && status_id == that.status_id && type_id == that.type_id && Objects.equals(description, that.description);
+        ResolveReimbursementDTO that = (ResolveReimbursementDTO) o;
+        return reimb_id == that.reimb_id && status_id == that.status_id && type_id == that.type_id && Objects.equals(description, that.description) && Objects.equals(author, that.author) && Objects.equals(resolver, that.resolver);
     }
 
     @Override
@@ -96,14 +94,13 @@ public class AddReimbursementDTO {
 
     @Override
     public String toString() {
-        return "AddReimbursementDTO{" +
+        return "ResolveReimbursementDTO{" +
                 "reimb_id=" + reimb_id +
                 ", description='" + description + '\'' +
-                ", author=" + author +
-                ", resolver=" + resolver +
+                ", author='" + author + '\'' +
+                ", resolver='" + resolver + '\'' +
                 ", status_id=" + status_id +
                 ", type_id=" + type_id +
                 '}';
     }
 }
-

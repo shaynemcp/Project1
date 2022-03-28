@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Reimbursement extends User{
 
    int reimb_id;
-   int amount;
-   Time submitted;
+   static int amount;
+   static Time submitted; // TODO figure out how to add time (hours & min) readable by PostgreSQL
    Time resolved;
    String description;
    String receipt;
@@ -40,46 +40,86 @@ public class Reimbursement extends User{
 
     // -- GETTERS && SETTERS -- //
 
-
     public int getReimb_id() {
         return reimb_id;
+    }
+
+    public void setReimb_id(int reimb_id) {
+        this.reimb_id = reimb_id;
     }
 
     public static int getAmount() {
         return amount;
     }
 
-    public Time getSubmitted() {
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public static Time getSubmitted() {
         return submitted;
+    }
+
+    public void setSubmitted(Time submitted) {
+        this.submitted = submitted;
     }
 
     public Time getResolved() {
         return resolved;
     }
 
+    public void setResolved(Time resolved) {
+        this.resolved = resolved;
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getReceipt() {
         return receipt;
     }
 
+    public void setReceipt(String receipt) {
+        this.receipt = receipt;
+    }
+
     public int getAuthor() {
         return author;
+    }
+
+    public void setAuthor(int author) {
+        this.author = author;
     }
 
     public int getResolver() {
         return resolver;
     }
 
+    public void setResolver(int resolver) {
+        this.resolver = resolver;
+    }
+
     public int getReimb_status_id() {
         return reimb_status_id;
+    }
+
+    public void setReimb_status_id(int reimb_status_id) {
+        this.reimb_status_id = reimb_status_id;
     }
 
     public int getReimb_type_id() {
         return reimb_type_id;
     }
+
+    public void setReimb_type_id(int reimb_type_id) {
+        this.reimb_type_id = reimb_type_id;
+    }
+
 
     // -- EQUALS, HASHCODE && TOSTRING //
 

@@ -27,6 +27,6 @@ public class UserController implements Controller{
         ctx.json(user);
     };
 
-    public void mapEndpoints(Javalin app) {
+    public void mapEndpoints(Javalin app) {app.post("/users/{user_id}/", getUserById);
     }
 }

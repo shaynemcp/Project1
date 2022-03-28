@@ -15,7 +15,7 @@ public class UserService {
     private UserDao userDao;
 
     public UserService() {
-        this.userDao = userDao;
+        this.userDao = new UserDao();
     }
 
     public UserService(UserDao mockDao) {
@@ -31,17 +31,18 @@ public class UserService {
     }
 
     // (R) Login info provided to controller here
-    public User getUserByCredentials (String username, String userpass) throws SQLException, UserNotFoundException{
 
-    try{
+    public User login (String username, String userpass) throws SQLException, UserNotFoundException{
+
+//    try{
         User user = userDao.getUserByUserCredentials(username, userpass);
         if (user == null) {
             throw new UserNotFoundException("User not found");
         }
         return user;
-    } catch (IllegalArgumentException e) {
-        throw new IllegalArgumentException("You must provide valid username and password credentials");
-    }
+//    } catch (IllegalArgumentException e) {
+//        throw new IllegalArgumentException("You must provide valid username and password credentials");
+//    }
     }
 
     public User getUserById (String id) throws SQLException, UserNotFoundException{
