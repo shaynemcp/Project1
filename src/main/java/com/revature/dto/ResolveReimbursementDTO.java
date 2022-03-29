@@ -2,6 +2,7 @@ package com.revature.dto;
 
 
 //import java.sql.Time;
+import com.revature.model.Reimbursement;
 import com.revature.model.User;
 
 import java.util.Objects;
@@ -11,8 +12,9 @@ public class ResolveReimbursementDTO {
     private int reimb_id;
 //    private Time submitted;
 //    private Time resolved;
+    private int amount;
     private String description;
-
+    private String receipt;
     private int author;
     private int resolver;
     private int status_id;
@@ -21,26 +23,53 @@ public class ResolveReimbursementDTO {
     private String emplUsername;
     private String mgrUsername;
 
+    private User user;
+
 
     public ResolveReimbursementDTO() {
     }
 
-    public ResolveReimbursementDTO(int reimb_id, String description, int status_id, int type_id, String emplUsername, String mgrUsername) {
-        this.reimb_id = reimb_id;
-        this.description = description;
-        this.status_id = status_id;
-        this.type_id = type_id;
-        this.emplUsername = emplUsername;
-        this.mgrUsername = mgrUsername;
+//    public ResolveReimbursementDTO(int reimb_id, String description, int status_id, int type_id, String emplUsername, String mgrUsername) {
+//        this.reimb_id = reimb_id;
+//        this.description = description;
+//        this.status_id = status_id;
+//        this.type_id = type_id;
+//        this.emplUsername = emplUsername;
+//        this.mgrUsername = mgrUsername;
+//    }
+
+    public ResolveReimbursementDTO(int reimb_id) {
+
+
+
     }
 
-    public ResolveReimbursementDTO(int reimb_id, String description, int author, int resolver, int status_id, int type_id) {
+    public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id) {
         this.reimb_id = reimb_id;
+        this.amount = amount;
         this.description = description;
         this.author = author;
         this.resolver = resolver;
         this.status_id = status_id;
         this.type_id = type_id;
+    }
+
+
+ // -- GETTERS & SETTERS -- //
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getReceipt() {
+        return receipt;
+    }
+
+    public void setReceipt(String receipt) {
+        this.receipt = receipt;
     }
 
     public String getEmplUsername() {

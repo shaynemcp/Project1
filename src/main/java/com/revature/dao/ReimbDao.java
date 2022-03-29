@@ -6,6 +6,7 @@ import com.revature.model.User;
 import com.revature.service.ReimbursementService;
 import com.revature.utility.ConnectionUtility;
 
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,19 @@ public class ReimbDao {
 
 
             while (rs.next()) {
+                 int reimbId = rs.getInt("reimb_id");
+                 int amount = rs. getInt("reimb_amount");
+                 Time submitted = rs.getTime("reimb_submitted");
+                 Time resolved = rs.getTime("reimb_resolved");
+                 String description = rs.getString("reimb_description");
+                String receipt = rs.getString("reimb_receipt");
+                int author = rs.getInt("reimb_author");
+                int resolver = rs.getInt("reimb_resolver");
+                int statusId = rs.getInt("reimb_status_id");
+                int typeId = rs.getInt("reimb_type_id");
 
+
+            reimbursements.add(new Reimbursement(reimbId, amount, submitted, resolved, description, receipt, author, resolver, statusId, typeId ));
             }
 
             return reimbursements;
@@ -94,7 +107,18 @@ public class ReimbDao {
 
 
             while (rs.next()) {
+                int reimbId = rs.getInt("reimb_id");
+                int amount = rs. getInt("reimb_amount");
+                Time submitted = rs.getTime("reimb_submitted");
+                Time resolved = rs.getTime("reimb_resolved");
+                String description = rs.getString("reimb_description");
+                String receipt = rs.getString("reimb_receipt");
+                int author = rs.getInt("reimb_author");
+                int resolver = rs.getInt("reimb_resolver");
+                int statusId = rs.getInt("reimb_status_id");
+                int typeId = rs.getInt("reimb_type_id");
 
+                reimbursements.add(new Reimbursement(reimbId, amount, submitted, resolved, description, receipt, author, resolver, statusId, typeId ));
             }
 
             return reimbursements;

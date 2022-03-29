@@ -3,6 +3,7 @@ package com.revature.service;
 import com.revature.dao.ReimbDao;
 import com.revature.dto.ResolveReimbursementDTO;
 import com.revature.model.Reimbursement;
+import com.revature.model.User;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -24,7 +25,14 @@ public class ReimbursementService {
 
         List<ResolveReimbursementDTO> dtos = new ArrayList<>();
         for (Reimbursement r : reimbursements) {
-            dtos.add(new ResolveReimbursementDTO(r.getReimb_id(), r.getDescription(), r.getReimb_status_id(), r.getReimb_type_id(), r.getEmployee().getUsername(), r.getManager().getUsername()));
+            int reimb_id = r.getReimb_id();
+            int amount = r.getAmount();
+            String description = r.getDescription();
+            int author = r.getAuthor();
+            int resolver = r.getResolver();
+            int status_id = r.getReimb_status_id();
+            int type_id = r.getReimb_type_id();
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id ));
         }
 
         return dtos;
@@ -33,9 +41,16 @@ public class ReimbursementService {
         List<Reimbursement> reimbursements = this.reimbDao.getAllReimbursementsById(reimb_author);
 
         List<ResolveReimbursementDTO> dtos = new ArrayList<>();
+
         for (Reimbursement r : reimbursements) {
-            dtos.add(new ResolveReimbursementDTO(r.getReimb_id(), r.getDescription(), r.getAuthor(),
-                    r.getResolver(), r.getReimb_status_id(), r.getReimb_type_id()));
+            int reimb_id = r.getReimb_id();
+            int amount = r.getAmount();
+            String description = r.getDescription();
+            int author = r.getAuthor();
+            int resolver = r.getResolver();
+            int status_id = r.getReimb_status_id();
+            int type_id = r.getReimb_type_id();
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id ));
         }
 
         return dtos;

@@ -1,0 +1,16 @@
+Completed: 
+- Login Functionality [postman]
+- frontend to backend login
+- Fix getAllReimbursements backend
+
+
+TODO 03/30:
+- ManagerPage - EmployeePage
+- Methods: getReimbursementByID (managers), getReimbursements(employ)
+
+TODO 03/31:
+- AddReimbursements
+- Unit Testing
+
+TODO 01/01: 
+- Unit Testing

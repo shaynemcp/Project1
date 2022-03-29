@@ -77,7 +77,7 @@ public class Reimbursement extends User{
         this.reimb_id = reimb_id;
     }
 
-    public static int getAmount() {
+    public int getAmount() {
         return amount;
     }
 
