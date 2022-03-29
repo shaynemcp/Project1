@@ -24,8 +24,7 @@ public class ReimbursementService {
 
         List<ResolveReimbursementDTO> dtos = new ArrayList<>();
         for (Reimbursement r : reimbursements) {
-            dtos.add(new ResolveReimbursementDTO(r.getReimb_id(), r.getDescription(), r.getAuthor(),
-                    r.getResolver(), r.getReimb_status_id(), r.getReimb_type_id()));
+            dtos.add(new ResolveReimbursementDTO(r.getReimb_id(), r.getDescription(), r.getReimb_status_id(), r.getReimb_type_id(), r.getEmployee().getUsername(), r.getManager().getUsername()));
         }
 
         return dtos;

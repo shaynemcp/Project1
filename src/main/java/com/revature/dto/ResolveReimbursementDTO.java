@@ -2,6 +2,8 @@ package com.revature.dto;
 
 
 //import java.sql.Time;
+import com.revature.model.User;
+
 import java.util.Objects;
 
 public class ResolveReimbursementDTO {
@@ -10,16 +12,26 @@ public class ResolveReimbursementDTO {
 //    private Time submitted;
 //    private Time resolved;
     private String description;
+
     private int author;
     private int resolver;
     private int status_id;
     private int type_id;
 
-
-
+    private String emplUsername;
+    private String mgrUsername;
 
 
     public ResolveReimbursementDTO() {
+    }
+
+    public ResolveReimbursementDTO(int reimb_id, String description, int status_id, int type_id, String emplUsername, String mgrUsername) {
+        this.reimb_id = reimb_id;
+        this.description = description;
+        this.status_id = status_id;
+        this.type_id = type_id;
+        this.emplUsername = emplUsername;
+        this.mgrUsername = mgrUsername;
     }
 
     public ResolveReimbursementDTO(int reimb_id, String description, int author, int resolver, int status_id, int type_id) {
@@ -29,6 +41,22 @@ public class ResolveReimbursementDTO {
         this.resolver = resolver;
         this.status_id = status_id;
         this.type_id = type_id;
+    }
+
+    public String getEmplUsername() {
+        return emplUsername;
+    }
+
+    public void setEmplUsername(String emplUsername) {
+        this.emplUsername = emplUsername;
+    }
+
+    public String getMgrUsername() {
+        return mgrUsername;
+    }
+
+    public void setMgrUsername(String mgrUsername) {
+        this.mgrUsername = mgrUsername;
     }
 
     public int getReimb_id() {
@@ -84,12 +112,12 @@ public class ResolveReimbursementDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ResolveReimbursementDTO that = (ResolveReimbursementDTO) o;
-        return reimb_id == that.reimb_id && status_id == that.status_id && type_id == that.type_id && Objects.equals(description, that.description) && Objects.equals(author, that.author) && Objects.equals(resolver, that.resolver);
+        return reimb_id == that.reimb_id && author == that.author && resolver == that.resolver && status_id == that.status_id && type_id == that.type_id && Objects.equals(description, that.description) && Objects.equals(emplUsername, that.emplUsername) && Objects.equals(mgrUsername, that.mgrUsername);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reimb_id, description, author, resolver, status_id, type_id);
+        return Objects.hash(reimb_id, description, author, resolver, status_id, type_id, emplUsername, mgrUsername);
     }
 
     @Override
@@ -97,10 +125,12 @@ public class ResolveReimbursementDTO {
         return "ResolveReimbursementDTO{" +
                 "reimb_id=" + reimb_id +
                 ", description='" + description + '\'' +
-                ", author='" + author + '\'' +
-                ", resolver='" + resolver + '\'' +
+                ", author=" + author +
+                ", resolver=" + resolver +
                 ", status_id=" + status_id +
                 ", type_id=" + type_id +
+                ", emplUsername='" + emplUsername + '\'' +
+                ", mgrUsername='" + mgrUsername + '\'' +
                 '}';
     }
 }

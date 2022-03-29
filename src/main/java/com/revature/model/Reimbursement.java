@@ -16,6 +16,9 @@ public class Reimbursement extends User{
    int reimb_status_id; // foreign key of status id on statuses table
    int reimb_type_id; // foreign key of type id on reimbursement types table
 
+    private User employee;
+    private User manager;
+
     public Reimbursement() {
     }
 
@@ -23,6 +26,16 @@ public class Reimbursement extends User{
     public Reimbursement(int reimb_id, int author) {
         this.reimb_id = reimb_id;
         this.author = author;
+    }
+
+    public Reimbursement(int reimb_id,  String description, String receipt, int reimb_status_id, int reimb_type_id, User employee, User manager) {
+        this.reimb_id = reimb_id;
+        this.description = description;
+        this.receipt = receipt;
+        this.reimb_status_id = reimb_status_id;
+        this.reimb_type_id = reimb_type_id;
+        this.employee = employee;
+        this.manager = manager;
     }
 
     public Reimbursement(int reimb_id, int amount, Time submitted, Time resolved, String description, String receipt, int author, int resolver, int reimb_status_id, int reimb_type_id) {
@@ -39,6 +52,22 @@ public class Reimbursement extends User{
     }
 
     // -- GETTERS && SETTERS -- //
+
+    public User getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(User employee) {
+        this.employee = employee;
+    }
+
+    public User getManager() {
+        return manager;
+    }
+
+    public void setManager(User manager) {
+        this.manager = manager;
+    }
 
     public int getReimb_id() {
         return reimb_id;
@@ -130,20 +159,18 @@ public class Reimbursement extends User{
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         Reimbursement that = (Reimbursement) o;
-        return reimb_id == that.reimb_id && amount == that.amount && author == that.author && resolver == that.resolver && reimb_status_id == that.reimb_status_id && reimb_type_id == that.reimb_type_id && Objects.equals(submitted, that.submitted) && Objects.equals(resolved, that.resolved) && Objects.equals(description, that.description) && Objects.equals(receipt, that.receipt);
+        return reimb_id == that.reimb_id && author == that.author && resolver == that.resolver && reimb_status_id == that.reimb_status_id && reimb_type_id == that.reimb_type_id && Objects.equals(resolved, that.resolved) && Objects.equals(description, that.description) && Objects.equals(receipt, that.receipt) && Objects.equals(employee, that.employee) && Objects.equals(manager, that.manager);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), reimb_id, amount, submitted, resolved, description, receipt, author, resolver, reimb_status_id, reimb_type_id);
+        return Objects.hash(super.hashCode(), reimb_id, resolved, description, receipt, author, resolver, reimb_status_id, reimb_type_id, employee, manager);
     }
 
     @Override
     public String toString() {
         return "Reimbursement{" +
                 "reimb_id=" + reimb_id +
-                ", amount=" + amount +
-                ", submitted=" + submitted +
                 ", resolved=" + resolved +
                 ", description='" + description + '\'' +
                 ", receipt='" + receipt + '\'' +
@@ -151,6 +178,8 @@ public class Reimbursement extends User{
                 ", resolver=" + resolver +
                 ", reimb_status_id=" + reimb_status_id +
                 ", reimb_type_id=" + reimb_type_id +
+                ", employee=" + employee +
+                ", manager=" + manager +
                 '}';
     }
 }

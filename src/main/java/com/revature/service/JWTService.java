@@ -23,7 +23,7 @@ public class JWTService {
 //        key = Keys.hmacShaKeyFor(secret); // Create a key using
 //    }
     private JWTService() {
-        byte[] secret = "Slim97".getBytes();
+        byte[] secret = "pIKxRNVUdOxPB28tA-hW8VQXHOUv8UJbaS6g_T-Etcs".getBytes();
         // key = Keys.secretKeyFor(SignatureAlgorithm.HS384); // Create a key using our secret password
         key = Keys.hmacShaKeyFor(secret);
     }

@@ -2,13 +2,13 @@ let loginBtn = document.querySelector('#login-btn');
 
 loginBtn.addEventListener('click', async () => {
     let usernameInput = document.querySelector('#username');
-    let passwordInput = document.querySelector('#password');
+    let userpassInput = document.querySelector('#userpass');
 
     const URL = 'http://localhost:8080/login';
 
     const jsonString = JSON.stringify({
         "username": usernameInput.value,
-        "password": passwordInput.value
+        "userpass": userpassInput.value
     });
 
     let res = await fetch(URL, {
@@ -28,10 +28,10 @@ loginBtn.addEventListener('click', async () => {
 
         localStorage.setItem('user_id', user.id); // Keep track of the user id in the localStorage
 
-        if (user.userRole === 'trainer') {
-            window.location = '/trainer-page.html';
-        } else if (user.userRole === 'student') {
-            window.location = '/student-page.html';
+        if (user.userRole === 'Fin Mgr') {
+            window.location = '/manager-page.html';
+        } else if (user.userRole === 'Employee') {
+            window.location = '/employee-page.html';
         }
     } else {
         let errorMsg = await res.text();
