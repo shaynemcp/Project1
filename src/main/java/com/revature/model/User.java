@@ -11,7 +11,7 @@ public class User {
     String last_name;
     String email;
     int user_role_id;
-    String user_role; // "Fin Mgr"  or "Employee"
+    String user_role; // "manager"  or "Employee"
     int ers_role_id; // (1) Fin Mgr    (2) Employee
 
     public User() {
@@ -25,24 +25,51 @@ public class User {
         this.user_role = user_role;
     }
 
-    public User(int id, String username, String userpass, String first_name, String last_name, String email, int user_role_id) {
-        this.id = id;
-        this.username = username;
-        this.userpass = userpass;
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(int userId, String userName, String firstName, String lastName, String email, String userRole) {
+        this.id = userId;
+        this.username = userName;
+        this.first_name = firstName;
+        this.last_name = lastName;
         this.email = email;
-        this.user_role_id = user_role_id;
+        this.user_role = userRole;
     }
 
-    public User(int id, String username, String userpass) {
-        this.id = id;
-        this.username = username;
-        this.userpass = userpass;
+    public User(int eId, String eUsername, String eUserpass, String eFirstName, String eLastName, String eEmail, int eUserRoleId) {
+        this.id = eId;
+        this.username = eUsername;
+        this.userpass = eUserpass;
+        this.first_name = eFirstName;
+        this.last_name = eLastName;
+        this.email = eEmail;
+        this.user_role_id = eUserRoleId;
     }
+
+//    public User(int id, String username, String userpass, String first_name, String last_name, String email, int user_role_id) {
+//        this.id = id;
+//        this.username = username;
+//        this.userpass = userpass;
+//        this.first_name = first_name;
+//        this.last_name = last_name;
+//        this.email = email;
+//        this.user_role_id = user_role_id;
+//    }
+
+//    public User(int id, String username, String userpass) {
+//        this.id = id;
+//        this.username = username;
+//        this.userpass = userpass;
+//    }
 
     //  -- GETTERS & SETTERS -- //
 
+
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
 
     public int getId() {
         return id;

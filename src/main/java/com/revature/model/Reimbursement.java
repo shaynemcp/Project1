@@ -15,6 +15,7 @@ public class Reimbursement extends User{
    int resolver; // foreign key of id on users table
    int reimb_status_id; // foreign key of status id on statuses table
    int reimb_type_id; // foreign key of type id on reimbursement types table
+    int user_id;
 
     private User employee;
     private User manager;
@@ -28,17 +29,17 @@ public class Reimbursement extends User{
         this.author = author;
     }
 
-    public Reimbursement(int reimb_id,  String description, String receipt, int reimb_status_id, int reimb_type_id, User employee, User manager) {
-        this.reimb_id = reimb_id;
-        this.description = description;
-        this.receipt = receipt;
-        this.reimb_status_id = reimb_status_id;
-        this.reimb_type_id = reimb_type_id;
-        this.employee = employee;
-        this.manager = manager;
-    }
+//    public Reimbursement(int reimb_id,  String description, String receipt, int reimb_status_id, int reimb_type_id, User employee, User manager) {
+//        this.reimb_id = reimb_id;
+//        this.description = description;
+//        this.receipt = receipt;
+//        this.reimb_status_id = reimb_status_id;
+//        this.reimb_type_id = reimb_type_id;
+//        this.employee = employee;
+//        this.manager = manager;
+//    }
 
-    public Reimbursement(int reimb_id, int amount, Time submitted, Time resolved, String description, String receipt, int author, int resolver, int reimb_status_id, int reimb_type_id) {
+    public Reimbursement(int reimb_id, int amount, Time submitted, Time resolved, String description, int author, int resolver, int reimb_status_id, int reimb_type_id,  String receipt) {
         this.reimb_id = reimb_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -49,9 +50,44 @@ public class Reimbursement extends User{
         this.resolver = resolver;
         this.reimb_status_id = reimb_status_id;
         this.reimb_type_id = reimb_type_id;
+
+    }
+
+    public Reimbursement(int reimbId, int amount, String description, int author, int resolver, int statusId, int typeId, String userName, String userRole) {
+        this.reimb_id = reimbId;
+        this.amount = amount;
+        this.description = description;
+        this.author = author;
+        this.resolver = resolver;
+        this.reimb_status_id = statusId;
+        this.reimb_type_id = typeId;
+        this.username = userName;
+        this.user_role = userRole;
+    }
+
+    public Reimbursement(int reimbId, int amount, Time submitted, Time resolved, String description, int author, int resolver, int statusId, int typeId, String receipt, int user_id,String userName, String userRole) {
+        this.reimb_id = reimbId;
+        this.amount = amount;
+        this.description = description;
+        this.author = author;
+        this.resolver = resolver;
+        this.reimb_status_id = statusId;
+        this.reimb_type_id = typeId;
+        this.user_id = user_id;
+        this.username = userName;
+        this.user_role = userRole;
     }
 
     // -- GETTERS && SETTERS -- //
+
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public User getEmployee() {
         return employee;
@@ -85,7 +121,7 @@ public class Reimbursement extends User{
         this.amount = amount;
     }
 
-    public static Time getSubmitted() {
+    public  Time getSubmitted() {
         return submitted;
     }
 

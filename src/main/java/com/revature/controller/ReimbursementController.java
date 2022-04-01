@@ -1,7 +1,9 @@
 package com.revature.controller;
 
 //import com.revature.dto.AddReimbursementDTO;
+import com.revature.dto.AddReimbursementDTO;
 import com.revature.dto.ResolveReimbursementDTO;
+import com.revature.model.Reimbursement;
 import com.revature.service.JWTService;
 import com.revature.service.ReimbursementService;
 import io.javalin.Javalin;
@@ -12,6 +14,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 
 import java.io.InputStream;
+import java.sql.Time;
 import java.util.List;
 
 public class ReimbursementController implements Controller {
@@ -31,7 +34,6 @@ public class ReimbursementController implements Controller {
     // 2. Request headers
     // 3. Path parameters (1 is the path parameter) /clients/1
     // 4. Query parameters /clients?myQueryParam=something&myOtherQueryParam=somethingelse
-    // TODO: When try/catch is used, empty array, when no try catch get UnauthorizedResponse
     private Handler getAllReimbursements = (ctx) -> {
         // { "Bearer", "" }
         Jws<Claims> token = null;
@@ -41,8 +43,8 @@ public class ReimbursementController implements Controller {
             token = this.jwtService.parseJwt(jwt);
         } catch (Throwable e) {
             e.printStackTrace();
-            if (!token.getBody().get("user_role").equals("Fin Mgr")) {
-                throw new UnauthorizedResponse("You must be a Fin Mgr to access this endpoint");
+            if (!token.getBody().get("user_role").equals("Manager")) {
+                throw new UnauthorizedResponse("You must be a manager to access this endpoint");
             }
         }
         List<ResolveReimbursementDTO> assignments = this.reimbursementService.getAllReimbursements();
@@ -50,6 +52,69 @@ public class ReimbursementController implements Controller {
         ctx.json(assignments);
     };
 
+    private Handler getEmployeeReimbursementsById = (ctx) -> {
+        if (ctx.header("Authorization") == null) {
+            throw new UnauthorizedResponse("You must be logged in to access this endpoint.");
+        }
+        String jwt = ctx.header("Authorization").split(" ")[1];
+        Jws<Claims> token = this.jwtService.parseJwt(jwt);
+
+        if (!token.getBody().get("user_role").equals("Employee")) {
+            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
+        }
+
+        String user_id = ctx.pathParam("user_id");
+        int userId = Integer.parseInt(user_id);
+        if (!token.getBody().get("user_id").equals(userId)) {
+            throw new UnauthorizedResponse("You can only access reimbursements that belong to you");
+        }
+
+        List<ResolveReimbursementDTO> dtos = this.reimbursementService.getAllReimbursementsById(userId);
+        ctx.json(dtos);
+    };
+
+
+    private Handler addReimbursement = (ctx) -> {
+        if (ctx.header("Authorization") == null) {
+            throw new UnauthorizedResponse("You must be logged in to access this endpoint.");
+        }
+
+        String jwt = ctx.header("Authorization").split(" ")[1];
+        Jws<Claims> token = this.jwtService.parseJwt(jwt);
+
+
+        if (!token.getBody().get("user_role").equals("Employee")) {
+            throw new UnauthorizedResponse("You must be an employee to access this endpoint");
+        }
+
+        String user_id = ctx.pathParam("user_id");
+        int userId = Integer.parseInt(user_id);
+        if (!token.getBody().get("user_id").equals(userId)) {
+            throw new UnauthorizedResponse("You can only add reimbursements that belong to you");
+        }
+        int amount = Integer.parseInt(ctx.formParam("amount"));
+        String submitted = (ctx.formParam("submitted"));
+        String description = ctx.formParam("description");
+        String receipt = ctx.formParam("receipt");
+        int author = Integer.parseInt(ctx.formParam("author"));
+        int status_id = Integer.parseInt(ctx.formParam("status_id"));
+        int type_id = Integer.parseInt(ctx.formParam("type_id"));
+
+
+        AddReimbursementDTO dto = new AddReimbursementDTO();
+
+        dto.setAmount(amount);
+        dto.setSubmitted(Time.valueOf(submitted));
+        dto.setDescription(description);
+        dto.setReceipt(receipt);
+        dto.setAuthor(author);
+        dto.setStatus_id(status_id);
+        dto.setType_id(type_id);
+
+
+        AddReimbursementDTO getDto = this.reimbursementService.addReimbursement(userId, dto);
+        ctx.json(getDto);
+    };
     // Authorization logic
     // 1. User role should be student (logged in)
     // 2. user_id should match with who is actually logged in
@@ -149,9 +214,9 @@ public class ReimbursementController implements Controller {
 
     @Override
     public void mapEndpoints(Javalin app) {
-        app.get("/reimbursements", getAllReimbursements); // trainers
-//        app.get("/users/{user_id}/assignments", getSpecificStudentAssignments); // specific student
-//        app.post("/users/{user_id}/assignments", addAssignment); // specific student
+        app.get("/reimbursements", getAllReimbursements); // manager
+        app.get("/users/{user_id}/reimbursements", getEmployeeReimbursementsById); // specific employee
+        app.post("/users/{user_id}/reimbursements", addReimbursement); // employee adds their own reimbursement
 //        app.get("/users/{user_id}/assignments/{assignment_id}/image", getAssignmentImage);
 //        app.patch("/assignments/{assignment_id}", gradeAssignment); // trainers
     }

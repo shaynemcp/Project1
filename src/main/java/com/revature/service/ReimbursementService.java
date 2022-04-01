@@ -1,11 +1,12 @@
 package com.revature.service;
 
 import com.revature.dao.ReimbDao;
+import com.revature.dto.AddReimbursementDTO;
 import com.revature.dto.ResolveReimbursementDTO;
 import com.revature.model.Reimbursement;
-import com.revature.model.User;
 
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,14 @@ public class ReimbursementService {
         this.reimbDao = mockDao;
     }
 
+    public AddReimbursementDTO addReimbursement(int user_id, AddReimbursementDTO dto) throws SQLException {
+        Reimbursement addedReimbursement = this.reimbDao.addReimbursement(user_id, dto);
+        Reimbursement a = addedReimbursement;
+
+        return new AddReimbursementDTO(a.getReimb_id(), a.getAmount(), a.getSubmitted(), a.getResolved(),
+                a.getDescription(), a.getAuthor(), a.getResolver(), a.getReimb_status_id(), a.getReimb_type_id(), a.getReceipt());
+    }
+
     public List<ResolveReimbursementDTO> getAllReimbursements() throws SQLException {
         List<Reimbursement> reimbursements = this.reimbDao.getAllReimbursements();
 
@@ -27,21 +36,23 @@ public class ReimbursementService {
         for (Reimbursement r : reimbursements) {
             int reimb_id = r.getReimb_id();
             int amount = r.getAmount();
+            Time submitted = r.getSubmitted();
+            Time resolved = r.getResolved();
             String description = r.getDescription();
             int author = r.getAuthor();
             int resolver = r.getResolver();
             int status_id = r.getReimb_status_id();
             int type_id = r.getReimb_type_id();
-            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id ));
+
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role()));
         }
 
         return dtos;
     }
-    public List<ResolveReimbursementDTO> getAllReimbursementsById(int reimb_author) throws SQLException {
-        List<Reimbursement> reimbursements = this.reimbDao.getAllReimbursementsById(reimb_author);
+    public List<ResolveReimbursementDTO> getAllReimbursementsById(int userId) throws SQLException {
+        List<Reimbursement> reimbursements = this.reimbDao.getAllReimbursementsById(userId);
 
         List<ResolveReimbursementDTO> dtos = new ArrayList<>();
-
         for (Reimbursement r : reimbursements) {
             int reimb_id = r.getReimb_id();
             int amount = r.getAmount();
@@ -50,7 +61,9 @@ public class ReimbursementService {
             int resolver = r.getResolver();
             int status_id = r.getReimb_status_id();
             int type_id = r.getReimb_type_id();
-            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id ));
+            int user_id = r.getUser_id();
+
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(), user_id));
         }
 
         return dtos;

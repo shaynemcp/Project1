@@ -23,7 +23,7 @@ public class JWTService {
 //        key = Keys.hmacShaKeyFor(secret); // Create a key using
 //    }
     private JWTService() {
-        byte[] secret = "pIKxRNVUdOxPB28tA-hW8VQXHOUv8UJbaS6g_T-Etcs".getBytes();
+        byte[] secret = "there-is-no-secretHS_eqkivqX-0i8dXDf6IoVdGW-u4mzltQ17bVn-RSdkd52d1".getBytes();
         // key = Keys.secretKeyFor(SignatureAlgorithm.HS384); // Create a key using our secret password
         key = Keys.hmacShaKeyFor(secret);
     }
@@ -42,7 +42,7 @@ public class JWTService {
         String jwt = Jwts.builder()
                 .setSubject(user.getUsername())
                 .claim("user_id", user.getId())
-                .claim("user_role", user.getUser_role_id())
+                .claim("user_role", user.getUser_role())
                 .signWith(key)
                 .compact();
 
