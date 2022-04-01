@@ -1,4 +1,3 @@
-
 let logoutBtn = document.querySelector('#logout-btn');
 logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('user_role');
@@ -11,7 +10,7 @@ window.addEventListener('load', (event) => {
 });
 
 async function populateReimbursementsTable() {
-    const URL = `http://localhost:8080/reimbursements`;
+    const URL = `http://localhost:8080/users/${localStorage.getItem('user_id')}/reimbursements`;
     let res = await fetch(URL, {
         method: 'GET',
         headers: {
@@ -97,14 +96,3 @@ async function populateReimbursementsTable() {
         }
     }
 }
-
-// let getReimBtn = document.querySelector('#getReim-btn');
-// getReimbursements.addEventListener('click', async () => {
-//     let usernameInput = document.querySelector('#username');
-//     let userpassInput = document.querySelector('#userpass');
-//     const URL = 'http://localhost:8080/login';
-//     const jsonString = JSON.stringify({
-//         "username": usernameInput.value,
-//         "userpass": userpassInput.value
-//     });
-// }
