@@ -80,6 +80,23 @@ public class ResolveReimbursementDTO {
         this.user_id = user_id;
     }
 
+    //updateReimbursementStatusDTO
+    public ResolveReimbursementDTO(int reimb_id, int amount, Time submitted, Time resolved, String description, int author, int resolver, int status_id, int type_id, String username, String user_role, String receipt, int user_id) {
+        this.reimb_id = reimb_id;
+        this.amount = amount;
+        this.submitted = submitted;
+        this.resolved = resolved;
+        this.description = description;
+        this.author = author;
+        this.resolver = resolver;
+        this.status_id = status_id;
+        this.type_id = type_id;
+        this.username = username;
+        this.user_role = user_role;
+        this.receipt = receipt;
+        this.user_id = user_id;
+    }
+
 
 //    public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id, String emplUsername, String mgrUsername) {
 //        this.reimb_id = reimb_id;

@@ -69,6 +69,29 @@ public class ReimbursementService {
         return dtos;
     }
 
+    public ResolveReimbursementDTO updateReimbursementStatus(String reimbId, String  status) throws SQLException {
+        try{
+
+            System.out.println(reimbId);
+            System.out.print(status);
+
+            int rId = Integer.parseInt(reimbId);
+            int sId = Integer.parseInt(status);
+
+
+           Reimbursement r =  this.reimbDao.updateReimbursementStatus(rId, sId);
+
+           return new ResolveReimbursementDTO(r.getReimb_id(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
+                   r.getAuthor(), r.getResolver(), r.getReimb_status_id(), r.getReimb_type_id(), r.getUsername(),r.getUser_role(), r.getReceipt(), r.getUser_id());
+          //  Reimbursement(rId, amount, submitted, resolved, description, author, resolver, statusId, typeId, userName, userRole, receipt, user_id)
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            throw new IllegalArgumentException("Must provide valid ID for reimbursement and status");
+        }
+    }
+
+
 //    public ResponseAssignmentDTO gradeAssignment(String assignmentId, String grade, int graderId) throws SQLException {
 //        try {
 //            int intAssignmentId = Integer.parseInt(assignmentId);

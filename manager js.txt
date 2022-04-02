@@ -27,36 +27,31 @@ async function populateReimbursementsTable() {
 
     if (res.status === 200) {
         let Reimbursements = await res.json();
-      
+
             for (let Reimbursement of Reimbursements) {
                 let tr = document.createElement('tr');
-                
 
                 let td1 = document.createElement('td');
                 td1.innerText = Reimbursement.reimb_id;
 
                 let td2 = document.createElement('td');
-                td2.innerText = Reimbursement.amount;
+                td2.innerText = Reimbursement.reimb_amount;
 
                 let td3 = document.createElement('td');
-                td3.innerText = Reimbursement.description;
+                td3.innerText = Reimbursement.reimb_description;
 
                 let td4 = document.createElement('td');
-                td4.innerText = Reimbursement.author;
+                td4.innerText = Reimbursement.reimb_author;
 
                 let td5 = document.createElement('td');
-                if(Reimbursement.resolver == 1) {
-                    td5.innerText = "Jurgen Klopp"
-                } else {
-                    td5.innerText = "Not resolved, see status";
-                }
+                td5.innerText = Reimbursement.reimb_resolver;
 
                 let td6 = document.createElement('td');
-                if(Reimbursement.status_id == 1) {
+                if(Reimbursement.reimb_status_id == 1) {
                     td6.innerText = "Pending";
-                } else if(Reimbursement.status_id == 2) {
+                } else if(Reimbursement.reimb_status_id == 2) {
                     td6.innerText = "Approved";
-                } else if(Reimbursement.status_id == 3) {
+                } else if(Reimbursement.reimb_status_id == 3) {
                     td6.innerText = "Denied";
                 } else {
                     td6.innerText = "Status not defined";
@@ -64,29 +59,27 @@ async function populateReimbursementsTable() {
 
                 
                 let td7 = document.createElement('td');
-                if(Reimbursement.type_id == 1) {
+                if(Reimbursement.reimb_type_id == 1) {
                     td7.innerText = "Lodging";
-                } else if(Reimbursement.type_id == 2) {
+                } else if(Reimbursement.reimb_type_id == 2) {
                     td7.innerText = "Travel";
-                } else if(Reimbursement.type_id == 3) {
+                } else if(Reimbursement.reimb_type_id == 3) {
                     td7.innerText = "Food";
-                } else if(Reimbursement.type_id == 4) {
+                } else if(Reimbursement.reimb_type_id == 4) {
                     td7.innerText = "Other";
                 } else {
                     td7.innerText = "Type of reimbursement not defined";
                 }
 
-                let td8 = document.createElement('td');
-                td8.innerText = Reimbursement.username;
-                
-                let td9 = document.createElement('td');
-                td9.innerText = Reimbursement.user_role;
 
-                let td10 = document.createElement('td');
-                td10.innerText = Reimbursement.reimb_receipt;
+                let td8 = document.createElement('td');
+                td8.innerText = Reimbursement.user_id; 
+
+                let td9 = document.createElement('td');
+                td9.innerText = Reimbursement.username;
                 
-                let td11 = document.createElement('td');
-                td11.innerText = Reimbursement.user_id; 
+                let td10 = document.createElement('td');
+                td10.innerText = Reimbursement.user_role;
                 
   
                     
@@ -100,14 +93,12 @@ async function populateReimbursementsTable() {
                 tr.appendChild(td8);
                 tr.appendChild(td9);
                 tr.appendChild(td10);
-                tr.appendChild(td11);
 
+                               
                 let tbody = document.querySelector('#Reimbursements-tbl > tbody');
-                tbody.appendChild(tr); 
+                tbody.innerHTML = '';
             }
-                                           
         }
-       
     }
- 
+
 

@@ -111,14 +111,31 @@ public class ReimbursementController implements Controller {
         ctx.json(getDto);
     };
 
+    private Handler updateReimbursementStatus = ctx -> {
+        String jwt = ctx.header("Authorization").split(" ")[1];
+        Jws<Claims> token = this.jwtService.parseJwt(jwt);
+
+        if (!token.getBody().get("user_role").equals("manager")) {
+            throw new UnauthorizedResponse("You must be a manager to access this endpoint");
+        }
+        String reimb_id = ctx.pathParam("reimb_id");
+        String status_id = ctx.formParam("reimb_status_id");
+        String resolver = ctx.formParam("resolver");
+        String username = ctx.formParam("username");
+        int user_id = token.getBody().get("user_id", Integer.class);
+
+        ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id);
+        ctx.json(reimbursement);
+    };
+
 
     @Override
     public void mapEndpoints(Javalin app) {
         app.get("/reimbursements", getAllReimbursements); // manager
         app.get("/users/{user_id}/reimbursements", getEmployeeReimbursementsById); // specific employee
         app.post("/users/{user_id}/reimbursements", addReimbursement); // employee adds their own reimbursement
-//        app.get("/users/{user_id}/assignments/{assignment_id}/image", getAssignmentImage);
-//        app.patch("/assignments/{assignment_id}", gradeAssignment); // trainers
+//        app.get("/users/{user_id}/reimbursements/{reimb_id}/image", getReimbursementImage);
+        app.patch("/reimbursements/{reimb_id}", updateReimbursementStatus); // managers
     }
 
 }

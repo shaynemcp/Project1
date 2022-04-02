@@ -6,8 +6,8 @@ import java.util.Objects;
 public class Reimbursement extends User{
 
    int reimb_id;
-   static int amount;
-   static Time submitted; // TODO figure out how to add time (hours & min) readable by PostgreSQL
+   int amount;
+   Time submitted; // TODO figure out how to add time (hours & min) readable by PostgreSQL
    Time resolved;
    String description;
    String receipt;
@@ -16,6 +16,8 @@ public class Reimbursement extends User{
    int reimb_status_id; // foreign key of status id on statuses table
    int reimb_type_id; // foreign key of type id on reimbursement types table
     int user_id;
+    String username,  user_role;
+
 
     private User employee;
     private User manager;
@@ -52,8 +54,8 @@ public class Reimbursement extends User{
         this.reimb_type_id = reimb_type_id;
 
     }
-
-    public Reimbursement(int reimbId, int amount, String description, int author, int resolver, int statusId, int typeId, String userName, String userRole) {
+//getAllReimbursements()
+    public Reimbursement(int reimbId, int amount, String description, int author, int resolver, int statusId, int typeId, String username, String user_role) {
         this.reimb_id = reimbId;
         this.amount = amount;
         this.description = description;
@@ -61,14 +63,17 @@ public class Reimbursement extends User{
         this.resolver = resolver;
         this.reimb_status_id = statusId;
         this.reimb_type_id = typeId;
-        this.username = userName;
-        this.user_role = userRole;
+        this.username = username;
+        this.user_role = user_role;
     }
 
-    public Reimbursement(int reimbId, int amount, Time submitted, Time resolved, String description, int author, int resolver, int statusId, int typeId, String receipt, int user_id,String userName, String userRole) {
+    //updateReimbursementStatus
+    public Reimbursement(int reimbId, int amount, Time submitted, Time resolved, String description, int author, int resolver, int statusId, int typeId, String receipt,  String userRole,String userName, int user_id) {
         this.reimb_id = reimbId;
         this.amount = amount;
         this.description = description;
+        this.submitted = submitted;
+        this.resolved = resolved;
         this.author = author;
         this.resolver = resolver;
         this.reimb_status_id = statusId;
@@ -76,6 +81,7 @@ public class Reimbursement extends User{
         this.user_id = user_id;
         this.username = userName;
         this.user_role = userRole;
+        this.receipt = receipt;
     }
 
     // -- GETTERS && SETTERS -- //
@@ -183,6 +189,26 @@ public class Reimbursement extends User{
 
     public void setReimb_type_id(int reimb_type_id) {
         this.reimb_type_id = reimb_type_id;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Override
+    public String getUser_role() {
+        return user_role;
+    }
+
+    @Override
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
     }
 
 
