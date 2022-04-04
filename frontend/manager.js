@@ -39,54 +39,62 @@ async function populateReimbursementsTable() {
                 td2.innerText = Reimbursement.amount;
 
                 let td3 = document.createElement('td');
-                td3.innerText = Reimbursement.description;
+                td3.innerText = Reimbursement.submitted;
 
                 let td4 = document.createElement('td');
-                td4.innerText = Reimbursement.author;
+                td4.innerText = Reimbursement.resolved;
 
                 let td5 = document.createElement('td');
-                if(Reimbursement.resolver == 1) {
-                    td5.innerText = "Jurgen Klopp"
-                } else {
-                    td5.innerText = "Not resolved, see status";
-                }
+                td5.innerText = Reimbursement.description;
 
                 let td6 = document.createElement('td');
-                if(Reimbursement.status_id == 1) {
-                    td6.innerText = "Pending";
-                } else if(Reimbursement.status_id == 2) {
-                    td6.innerText = "Approved";
-                } else if(Reimbursement.status_id == 3) {
-                    td6.innerText = "Denied";
-                } else {
-                    td6.innerText = "Status not defined";
-                }
+                td6.innerText = Reimbursement.author;
 
-                
                 let td7 = document.createElement('td');
-                if(Reimbursement.type_id == 1) {
-                    td7.innerText = "Lodging";
-                } else if(Reimbursement.type_id == 2) {
-                    td7.innerText = "Travel";
-                } else if(Reimbursement.type_id == 3) {
-                    td7.innerText = "Food";
-                } else if(Reimbursement.type_id == 4) {
-                    td7.innerText = "Other";
+                 if(Reimbursement.status_id == 2){
+                    td7.innerText = "Jurgen Klopp";
+                } else if (Reimbursement.status_id == 3){
+                    td7.innerText = "Jurgen Klopp"
                 } else {
-                    td7.innerText = "Type of reimbursement not defined";
+                    td7.innerText = "See status"
                 }
 
                 let td8 = document.createElement('td');
-                td8.innerText = Reimbursement.username;
+                if(Reimbursement.status_id == 1) {
+                    td8.innerText = "Pending";
+                } else if(Reimbursement.status_id == 2) {
+                    td8.innerText = "Approved";
+                } else if(Reimbursement.status_id == 3) {
+                    td8.innerText = "Denied";
+                } else {
+                    td8.innerText = "Status not defined";
+                }
+
                 
                 let td9 = document.createElement('td');
-                td9.innerText = Reimbursement.user_role;
+                if(Reimbursement.type_id == 1) {
+                    td9.innerText = "Lodging";
+                } else if(Reimbursement.type_id == 2) {
+                    td9.innerText = "Travel";
+                } else if(Reimbursement.type_id == 3) {
+                    td9.innerText = "Food";
+                } else if(Reimbursement.type_id == 4) {
+                    td9.innerText = "Other";
+                } else {
+                    td9.innerText = "Type of reimbursement not defined";
+                }
 
                 let td10 = document.createElement('td');
-                td10.innerText = Reimbursement.reimb_receipt;
+                td10.innerText = Reimbursement.username;
                 
                 let td11 = document.createElement('td');
-                td11.innerText = Reimbursement.user_id; 
+                td11.innerText = Reimbursement.user_role;
+
+                let td12 = document.createElement('td');
+                td12.innerText = Reimbursement.reimb_receipt;
+                
+                let td13 = document.createElement('td');
+                td13.innerText = Reimbursement.user_id; 
                 
   
                     
@@ -101,13 +109,41 @@ async function populateReimbursementsTable() {
                 tr.appendChild(td9);
                 tr.appendChild(td10);
                 tr.appendChild(td11);
+                tr.appendChild(td12);
+                tr.appendChild(td13);
 
                 let tbody = document.querySelector('#Reimbursements-tbl > tbody');
                 tbody.appendChild(tr); 
+
+                //Deny Reimbursements   
+                if (Reimbursement.status_id == 1) {
+                    let deny = document.createElement('button');
+                    deny.innerText = 'Deny';
+                    let approve = document.createElement('button');
+                    approve.innerText = 'Approve'
+                    tr.appendChild(deny);
+                    tr.appendChild(approve);
+
+                    deny.addEventListener('click', async() => {
+                        console.log('clicked deny button');
+                        let response = 3 ;
+                        let res = await fetch(`http://localhost:8080/reimbursements/${reimbursements.reimb_id}?status_id=${response}`, {
+                            method: 'PATCH',
+                            headers: {
+                                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                        }
+                    })
+                    if(res.status_id === 200 ) {
+                        populateReimbursementsTable();
+                    }
+                });
+
+
+                }
             }
                                            
         }
        
     }
  
-
+                    
