@@ -9,6 +9,7 @@ window.addEventListener('load', (event) => {
     populateReimbursementsTable();
 });
 
+
 async function populateReimbursementsTable() {
     const URL = `http://localhost:8080/users/${localStorage.getItem('user_id')}/reimbursements`;
     let res = await fetch(URL, {
@@ -105,8 +106,38 @@ async function populateReimbursementsTable() {
                 tr.appendChild(td13);
 
                 let tbody = document.querySelector('#Reimbursements-tbl > tbody');
-                tbody.appendChild(tr); 
+                tbody.appendChild(tr);
+                
+                let addReimbursement = document.createElement('button');
+                addReimbursement.innerText = 'Add';
+                tr.appendChild(addReimbursement);
+
+                addReimbursement.addEventListener('click', async() => {
+                    console.log('clicked add button');
+                    let response = 3 ;
+                    let formdata = new FormData;
+                    formdata.append('amount', Reimbursement.amount);
+                    formdata.append('reimb_status_id', Reimbursement.status_id);
+                    formdata.append('description', Reimbursement.description);
+                    formdata.append('author', Reimbursement.author);
+                    formdata.append('type_id', Reimbursement.type_id);
+                    formdata.append('receipt', Reimbursement.receipt);
+
+                    let res = await fetch(`http://localhost:8080/users/${Reimbursement.user_id}reimbursements/`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+                        body: formdata
+                    }
+                })
+                if(res.status_id === 200 ) {
+                    populateReimbursementsTable();
+                }
+            });
             }
+           
+
+
                                            
         }
        

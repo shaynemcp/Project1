@@ -127,12 +127,18 @@ async function populateReimbursementsTable() {
                     deny.addEventListener('click', async() => {
                         console.log('clicked deny button');
                         let response = 3 ;
-                        let res = await fetch(`http://localhost:8080/reimbursements/${reimbursements.reimb_id}?status_id=${response}`, {
+                        let formdata = new FormData;
+                        formdata.append('user_id', Reimbursement.user_id);
+                        formdata.append('reimb_status_id', Reimbursement.status_id);
+                        formdata.append('resolver', Reimbursement.resolver);
+                        formdata.append('username', Reimbursement.username);
+                        let res = await fetch(`http://localhost:8080/reimbursements/${Reimbursements.reimb_id}`, {
                             method: 'PATCH',
                             headers: {
-                                'Authorization': `Bearer ${localStorage.getItem('jwt')}`
+                                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+                            body: formdata
                         }
-                    })
+                    }) 
                     if(res.status_id === 200 ) {
                         populateReimbursementsTable();
                     }
