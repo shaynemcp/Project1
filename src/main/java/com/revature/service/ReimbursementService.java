@@ -7,6 +7,7 @@ import com.revature.model.Reimbursement;
 
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,11 +22,11 @@ public class ReimbursementService {
         this.reimbDao = mockDao;
     }
 
-    public AddReimbursementDTO addReimbursement(int user_id, AddReimbursementDTO dto) throws SQLException {
-        Reimbursement addedReimbursement = this.reimbDao.addReimbursement(user_id, dto);
-        Reimbursement a = addedReimbursement;
+    public ResolveReimbursementDTO addReimbursement(int user_id, AddReimbursementDTO dto) throws SQLException {
+        Reimbursement a = this.reimbDao.addReimbursement(user_id, dto);
 
-        return new AddReimbursementDTO(a.getReimb_id(), a.getAmount(), a.getSubmitted(), a.getResolved(),
+
+        return new ResolveReimbursementDTO(a.getReimb_id(), a.getAmount(), a.getSubmitted(), a.getResolved(),
                 a.getDescription(), a.getAuthor(), a.getResolver(), a.getReimb_status_id(), a.getReimb_type_id(), a.getReceipt());
     }
 
@@ -36,15 +37,16 @@ public class ReimbursementService {
         for (Reimbursement r : reimbursements) {
             int reimb_id = r.getReimb_id();
             int amount = r.getAmount();
-            Time submitted = r.getSubmitted();
-            Time resolved = r.getResolved();
+            Timestamp submitted = r.getSubmitted();
+            Timestamp resolved = r.getResolved();
             String description = r.getDescription();
             int author = r.getAuthor();
             int resolver = r.getResolver();
             int status_id = r.getReimb_status_id();
             int type_id = r.getReimb_type_id();
+            int user_id = r.getUser_id();
 
-            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role()));
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(), user_id));
         }
 
         return dtos;
@@ -69,7 +71,7 @@ public class ReimbursementService {
         return dtos;
     }
 
-    public ResolveReimbursementDTO updateReimbursementStatus(String reimbId, String  status) throws SQLException {
+    public ResolveReimbursementDTO updateReimbursementStatus(String reimbId, String  status, String userId) throws SQLException {
         try{
 
             System.out.println(reimbId);
@@ -77,9 +79,10 @@ public class ReimbursementService {
 
             int rId = Integer.parseInt(reimbId);
             int sId = Integer.parseInt(status);
+            int uId = Integer.parseInt(userId);
 
 
-           Reimbursement r =  this.reimbDao.updateReimbursementStatus(rId, sId);
+           Reimbursement r =  this.reimbDao.updateReimbursementStatus(rId, sId, uId);
 
            return new ResolveReimbursementDTO(r.getReimb_id(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
                    r.getAuthor(), r.getResolver(), r.getReimb_status_id(), r.getReimb_type_id(), r.getUsername(),r.getUser_role(), r.getReceipt(), r.getUser_id());

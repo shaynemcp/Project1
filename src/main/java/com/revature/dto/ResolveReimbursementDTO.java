@@ -6,14 +6,15 @@ import com.revature.model.Reimbursement;
 import com.revature.model.User;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Objects;
 
 public class ResolveReimbursementDTO {
     private  int user_id;
     private int reimb_id;
 
-    private Time submitted;
-    private Time resolved;
+    private Timestamp submitted;
+    private Timestamp resolved;
     private int amount;
     private String description;
     private String receipt;
@@ -28,7 +29,7 @@ public class ResolveReimbursementDTO {
     private User user;
 
 
-//    public ResolveReimbursementDTO(int reimb_id, String description, int status_id, int type_id, String emplUsername, String mgrUsername) {
+//    public ResolveReimbursementDTO(int user_id, R) {
 //        this.reimb_id = reimb_id;
 //        this.description = description;
 //        this.status_id = status_id;
@@ -40,7 +41,7 @@ public class ResolveReimbursementDTO {
     public ResolveReimbursementDTO() {
     }
 //AddReimbursmentDTO
-    public ResolveReimbursementDTO(int reimb_id, int amount, Time submitted, Time resolved, String description, int author, int resolver, int status_id, int type_id) {
+    public ResolveReimbursementDTO(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int status_id, int type_id) {
         this.reimb_id = reimb_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -53,20 +54,21 @@ public class ResolveReimbursementDTO {
 
     }
     //getAllReimbursementsDTO
-    public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id, String username, String user_role) {
-        this.reimb_id = reimb_id;
-        this.amount = amount;
-        this.submitted = submitted;
-        this.resolved = resolved;
-        this.description = description;
-        this.author = author;
-        this.resolver = resolver;
-        this.status_id = status_id;
-        this.type_id = type_id;
-        this.username = username;
-        this.user_role = user_role;
-    }
-//getEmployeeReimbursementsDTO
+//    public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id, String username, String user_role) {
+//        this.reimb_id = reimb_id;
+//        this.amount = amount;
+////        this.submitted = submitted;
+////        this.resolved = resolved;
+//        this.description = description;
+//        this.author = author;
+//        this.resolver = resolver;
+//        this.status_id = status_id;
+//        this.type_id = type_id;
+//        this.username = username;
+//        this.user_role = user_role;
+//        this.user_id = user_id;
+//    }
+//getEmployeeReimbursementsDTO/ getAllReimbursements
     public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id, String username, String user_role, int user_id) {
         this.reimb_id = reimb_id;
         this.amount = amount;
@@ -81,7 +83,7 @@ public class ResolveReimbursementDTO {
     }
 
     //updateReimbursementStatusDTO
-    public ResolveReimbursementDTO(int reimb_id, int amount, Time submitted, Time resolved, String description, int author, int resolver, int status_id, int type_id, String username, String user_role, String receipt, int user_id) {
+    public ResolveReimbursementDTO(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int status_id, int type_id, String username, String user_role, String receipt, int user_id) {
         this.reimb_id = reimb_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -97,17 +99,30 @@ public class ResolveReimbursementDTO {
         this.user_id = user_id;
     }
 
+    public ResolveReimbursementDTO(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int reimb_status_id, int reimb_type_id, String receipt) {
+        this.reimb_id = reimb_id;
+        this.amount = amount;
+        this.submitted = submitted;
+        this.resolved = resolved;
+        this.description = description;
+        this.author = author;
+        this.resolver = resolver;
+        this.status_id = reimb_status_id;
+        this.type_id = reimb_type_id;
+        this.receipt = receipt;
+    }
 
-//    public ResolveReimbursementDTO(int reimb_id, int amount, String description, int author, int resolver, int status_id, int type_id, String emplUsername, String mgrUsername) {
-//        this.reimb_id = reimb_id;
-//        this.amount = amount;
-//        this.description = description;
-//        this.author = author;
-//        this.resolver = resolver;
-//        this.status_id = status_id;
-//        this.type_id = type_id;
-//        this.emplUsername = emplUsername;
-//        this.mgrUsername = mgrUsername;
+//    public ResolveReimbursementDTO(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int reimb_status_id, int reimb_type_id, String receipt) {
+//    this.reimb_id = reimb_id;
+//    this.amount = amount;
+//    this.submitted = submitted;
+//    this.resolved = resolved;
+//    this.description = description;
+//    this.author = author;
+//    this.resolver = resolver;
+//    this.status_id = reimb_status_id;
+//    this.type_id = reimb_type_id;
+//    this.receipt = receipt;
 //    }
 
 

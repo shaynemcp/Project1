@@ -15,6 +15,7 @@ import io.jsonwebtoken.Jws;
 
 import java.io.InputStream;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class ReimbursementController implements Controller {
@@ -77,7 +78,7 @@ public class ReimbursementController implements Controller {
         String jwt = ctx.header("Authorization").split(" ")[1];
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
 
-
+        System.out.println(token.getBody().get("user_role"));
         if (!token.getBody().get("user_role").equals("Employee")) {
             throw new UnauthorizedResponse("You must be an employee to access this endpoint");
         }
@@ -88,26 +89,27 @@ public class ReimbursementController implements Controller {
             throw new UnauthorizedResponse("You can only add reimbursements that belong to you");
         }
         int amount = Integer.parseInt(ctx.formParam("amount"));
-        String submitted = (ctx.formParam("submitted"));
+//        Timestamp submitted = new Timestamp(System.currentTimeMillis());
         String description = ctx.formParam("description");
         String receipt = ctx.formParam("receipt");
         int author = Integer.parseInt(ctx.formParam("author"));
         int status_id = Integer.parseInt(ctx.formParam("status_id"));
         int type_id = Integer.parseInt(ctx.formParam("type_id"));
-
+//        int resolver = Integer.parseInt(ctx.formParam("resolver"));
 
         AddReimbursementDTO dto = new AddReimbursementDTO();
 
         dto.setAmount(amount);
-        dto.setSubmitted(Time.valueOf(submitted));
+//        dto.setSubmitted(submitted);
         dto.setDescription(description);
         dto.setReceipt(receipt);
         dto.setAuthor(author);
         dto.setStatus_id(status_id);
         dto.setType_id(type_id);
+//        dto.setResolver(resolver);
 
 
-        AddReimbursementDTO getDto = this.reimbursementService.addReimbursement(userId, dto);
+        ResolveReimbursementDTO getDto = this.reimbursementService.addReimbursement(userId, dto);
         ctx.json(getDto);
     };
 
@@ -122,9 +124,9 @@ public class ReimbursementController implements Controller {
         String status_id = ctx.formParam("reimb_status_id");
         String resolver = ctx.formParam("resolver");
         String username = ctx.formParam("username");
-        int user_id = token.getBody().get("user_id", Integer.class);
+        String user_id = ctx.formParam("user_id");
 
-        ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id);
+        ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id,user_id);
         ctx.json(reimbursement);
     };
 

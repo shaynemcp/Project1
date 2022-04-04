@@ -19,7 +19,6 @@ loginBtn.addEventListener('click', async () => {
     // Get the token and store the token into localStorage
     // LocalStorage is accessible from anywhere in the browser
     let token = res.headers.get('Token');
-    console.log("this runs")
     localStorage.setItem('jwt', token);
 
 
@@ -32,7 +31,7 @@ localStorage.setItem('user_role', user.user_role);
 
         localStorage.setItem('user_id', user.id); // Keep track of the user id in the localStorage
         if (user.user_role === 'manager') {
-            window.location.pathname = 'manager.html';
+            window.location = 'manager.html';
         } else if (user.user_role === 'Employee') {
             window.location = 'employee.html';
         }

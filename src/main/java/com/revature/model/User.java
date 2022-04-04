@@ -25,14 +25,24 @@ public class User {
         this.user_role = user_role;
     }
 
-    public User(int userId, String userName, String firstName, String lastName, String email, String userRole) {
-        this.id = userId;
+    public User(int user_id, String userName, String firstName, String lastName, String email, String userRole) {
+        this.id = user_id;
         this.username = userName;
         this.first_name = firstName;
         this.last_name = lastName;
         this.email = email;
         this.user_role = userRole;
     }
+    public User(int user_id, String userName, String userPass, String firstName, String lastName, String email, String userRole) {
+        this.id = user_id;
+        this.username = userName;
+        this.userpass = userPass;
+        this.first_name = firstName;
+        this.last_name = lastName;
+        this.email = email;
+        this.user_role = userRole;
+    }
+
 
     public User(int eId, String eUsername, String eUserpass, String eFirstName, String eLastName, String eEmail, int eUserRoleId) {
         this.id = eId;
