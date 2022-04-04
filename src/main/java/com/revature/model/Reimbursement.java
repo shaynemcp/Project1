@@ -33,8 +33,8 @@ public class Reimbursement extends User{
     }
 
 
-
-    public Reimbursement(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int reimb_status_id, int reimb_type_id, String receipt) {
+//getAllReimbursements
+    public Reimbursement(int reimb_id, int amount, Timestamp submitted, Timestamp resolved, String description, int author, int resolver, int reimb_status_id, int reimb_type_id, String receipt, int user_id) {
         this.reimb_id = reimb_id;
         this.amount = amount;
         this.submitted = submitted;
@@ -45,6 +45,7 @@ public class Reimbursement extends User{
         this.resolver = resolver;
         this.reimb_status_id = reimb_status_id;
         this.reimb_type_id = reimb_type_id;
+        this.user_id = user_id;
 
     }
 //getAllReimbursements()
@@ -77,8 +78,8 @@ public class Reimbursement extends User{
         this.receipt = receipt;
     }
 //addReimbursement
-    public Reimbursement(int reimb_id, int amount, String description, String receipt, int author, int reimb_status_id, int reimb_type_id) {
-        this.reimb_id = reimb_id;
+    public Reimbursement(int reimbId, int amount, String description, String receipt, int author, int reimb_status_id, int reimb_type_id) {
+        this.reimb_id = reimbId;
         this.amount = amount;
         this.description = description;
         this.receipt = receipt;
@@ -134,6 +135,24 @@ public class Reimbursement extends User{
     public Reimbursement(int reimbursementId, int amount, String description, int author, int status_id, int reimb_type_id, String receipt) {
 
     }
+//getAllReimbursements
+    public Reimbursement(int reimbId, int amount, Timestamp submitted, Timestamp resolved, String description, String receipt, int author, int resolver, int reimb_status_id, int reimb_type_id, int user_id, String username, String user_role) {
+        this.reimb_id = reimbId;
+        this.amount = amount;
+        this.submitted = submitted;
+        this.resolved = resolved;
+        this.description = description;
+        this.receipt = receipt;
+        this.author = author;
+        this.resolver = resolver;
+        this.reimb_status_id = reimb_status_id;
+        this.reimb_type_id = reimb_type_id;
+        this.user_id = user_id;
+        this.username = username;
+        this.user_role = user_role;
+    }
+
+
 
 
     // -- GETTERS && SETTERS -- //

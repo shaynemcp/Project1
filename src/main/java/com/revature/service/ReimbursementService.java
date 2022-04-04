@@ -46,7 +46,7 @@ public class ReimbursementService {
             int type_id = r.getReimb_type_id();
             int user_id = r.getUser_id();
 
-            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(), user_id));
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, submitted, resolved, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(), r.getReceipt(), user_id));
         }
 
         return dtos;
@@ -58,6 +58,8 @@ public class ReimbursementService {
         for (Reimbursement r : reimbursements) {
             int reimb_id = r.getReimb_id();
             int amount = r.getAmount();
+            Timestamp submitted = r.getSubmitted();
+            Timestamp resolved = r.getResolved();
             String description = r.getDescription();
             int author = r.getAuthor();
             int resolver = r.getResolver();
@@ -65,7 +67,7 @@ public class ReimbursementService {
             int type_id = r.getReimb_type_id();
             int user_id = r.getUser_id();
 
-            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(), user_id));
+            dtos.add(new ResolveReimbursementDTO(reimb_id, amount, submitted, resolved, description, author, resolver, status_id, type_id, r.getUsername(), r.getUser_role(),r.getReceipt(), user_id));
         }
 
         return dtos;

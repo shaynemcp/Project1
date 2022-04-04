@@ -120,13 +120,19 @@ public class ReimbursementController implements Controller {
         if (!token.getBody().get("user_role").equals("manager")) {
             throw new UnauthorizedResponse("You must be a manager to access this endpoint");
         }
+
+        //TODO: Needs only resolver id & status id to be updated
         String reimb_id = ctx.pathParam("reimb_id");
-        String status_id = ctx.formParam("reimb_status_id");
-        String resolver = ctx.formParam("resolver");
+        String status_id = ctx.formParam("status_id");
+        int resolver = Integer.parseInt(ctx.formParam("resolver"));
         String username = ctx.formParam("username");
         String user_id = ctx.formParam("user_id");
+//        String username = jwtService.getClass(username);
+
 
         ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id,user_id);
+        reimbursement.setResolver(resolver);
+        reimbursement.setUsername(username);
         ctx.json(reimbursement);
     };
 

@@ -86,7 +86,7 @@ public class ReimbDao {
         try (Connection con = ConnectionUtility.getConnection()) {
             List<Reimbursement> reimbursements = new ArrayList<>();
 
-            String sql = "select r.reimb_id, r.reimb_amount, r.reimb_description, r.reimb_author, r.reimb_resolver, r.reimb_status_id, r.reimb_type_id, u.username, ur.user_role, u.id " +
+            String sql = "select r.reimb_id, r.reimb_amount, r.reimb_submitted, r.reimb_resolved, r.reimb_description, r.reimb_author, r.reimb_resolver, r.reimb_status_id, r.reimb_type_id, r.reimb_receipt, u.username, ur.user_role, u.id " +
                     "from reimbursements r left join users as u on r.reimb_author = u.id left join user_roles ur on u.user_role_id = ur.ers_user_role_id " +
                     "order by r.reimb_id;";
             PreparedStatement pstmt = con.prepareStatement(sql);
@@ -96,20 +96,20 @@ public class ReimbDao {
             while (rs.next()) {
                 int reimbId = rs.getInt("reimb_id");
                 int amount = rs.getInt("reimb_amount");
-//                 Time submitted = rs.getTime("reimb_submitted");
-//                 Time resolved = rs.getTime("reimb_resolved");
+                 Timestamp submitted = rs.getTimestamp("reimb_submitted");
+                 Timestamp resolved = rs.getTimestamp("reimb_resolved");
                 String description = rs.getString("reimb_description");
-//                String receipt = rs.getString("reimb_receipt");
+                String receipt = rs.getString("reimb_receipt");
                 int author = rs.getInt("reimb_author");
                 int resolver = rs.getInt("reimb_resolver");
                 int statusId = rs.getInt("reimb_status_id");
                 int typeId = rs.getInt("reimb_type_id");
                 String userRole = rs.getString("user_role");
                 String userName = rs.getString("username");
-                int uId = rs.getInt("id");
+                int user_id = rs.getInt("id");
 
 
-                reimbursements.add(new Reimbursement(reimbId, amount, description, author, resolver, statusId, typeId, userName, userRole));
+                reimbursements.add(new Reimbursement(reimbId, amount, submitted, resolved, description, author, resolver, statusId, typeId, userName, userRole, receipt, user_id));
             }
 
             return reimbursements;
@@ -186,21 +186,21 @@ public class ReimbDao {
 
 
             rs2.next();
-                int rId = rs2.getInt("reimb_id");
+                int reimb_id = rs2.getInt("reimb_id");
                 int amount = rs2.getInt("reimb_amount");
                 Timestamp submitted = rs2.getTimestamp("reimb_submitted");
                 Timestamp resolved = rs2.getTimestamp("reimb_resolved");
                 String description = rs2.getString("reimb_description");
-                String receipt = rs2.getString("reimb_receipt");
                 int author = rs2.getInt("reimb_author");
                 int resolver = rs2.getInt("reimb_resolver");
                 int statusId = rs2.getInt("reimb_status_id");
                 int typeId = rs2.getInt("reimb_type_id");
-                String userRole = rs2.getString("user_role");
-                int user_id = rs2.getInt("id");
-                String userName = rs2.getString("username");
+            String userName = rs2.getString("username");
+            String userRole = rs2.getString("user_role");
+            String receipt = rs2.getString("reimb_receipt");
+            int user_id = rs2.getInt("id");
 
-                Reimbursement reimbursement = new Reimbursement(rId, amount, submitted, resolved, description, author, resolver, statusId, typeId, userName, userRole, receipt, user_id);
+                Reimbursement reimbursement = new Reimbursement(reimb_id, amount, submitted, resolved, description, author, resolver, statusId, typeId, userName, userRole, receipt, user_id);
 
 
                 con.commit(); // commit the transaction
