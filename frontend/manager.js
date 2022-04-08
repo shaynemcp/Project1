@@ -115,37 +115,73 @@ async function populateReimbursementsTable() {
                 let tbody = document.querySelector('#Reimbursements-tbl > tbody');
                 tbody.appendChild(tr); 
 
-                //Deny Reimbursements   
+                //Deny or Approve Reimbursements   
                 if (Reimbursement.status_id == 1) {
-                    let deny = document.createElement('button');
-                    deny.innerText = 'Deny';
-                    let approve = document.createElement('button');
-                    approve.innerText = 'Approve'
-                    tr.appendChild(deny);
-                    tr.appendChild(approve);
 
-                    deny.addEventListener('click', async() => {
-                        console.log('clicked deny button');
-                        let response = 3 ;
-                        let formdata = new FormData;
-                        formdata.append('user_id', Reimbursement.user_id);
-                        formdata.append('reimb_status_id', Reimbursement.status_id);
-                        formdata.append('resolver', Reimbursement.resolver);
-                        formdata.append('username', Reimbursement.username);
-                        let res = await fetch(`http://localhost:8080/reimbursements/${Reimbursements.reimb_id}`, {
+                let changeStatus = document.createElement('input');
+                changeStatus.setAttribute('type', 'number');
+                changeStatus.setAttribute('Approved', '2');
+                changeStatus.setAttribute('Denied','3');
+
+                let statusButton = document.createElement('button');
+                statusButton.innerText = 'Approve/Deny';
+
+                statusButton.addEventListener('click', async () => {
+                    let status = changeStatus.value;
+
+                    try {
+                        let res = await fetch(`http://localhost:8080/reimbursements/${Reimbursement.reimb_id}?status_id=${status}`, {
                             method: 'PATCH',
                             headers: {
-                                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-                            body: formdata
+                                'Authorization': `Bearer ${localStorage.getItem('jwt')}` // Include our JWT into the request
+                            }
+                        });
+
+                        if (res.status === 200) {
+                            populateAssignmentsTable(); // Have this function call itself
                         }
-                    }) 
-                    if(res.status_id === 200 ) {
-                        populateReimbursementsTable();
+
+                    } catch (e) {
+                        console.log(e);
                     }
+                    
                 });
+                tr.appendChild(changeStatus);
+                tr.appendChild(statusButton);
+            
+
+                //     let deny = document.createElement('button');
+                //     deny.innerText = 'Deny';
+                //     let approve = document.createElement('button');
+                //     approve.innerText = 'Approve'
+                //     tr.appendChild(deny);
+                //     tr.appendChild(approve);
+
+                //     deny.addEventListener('click', async() => {
+                //         console.log('clicked deny button');
+                //         // let response = 3 ;
 
 
-                }
+                //         let statusform = document.getElementById('Reimbursement');
+                //         let formdata = new FormData(statusform);
+                //         formdata.append('user_id', Reimbursement.user_id);
+                //         formdata.append('reimb_status_id', Reimbursement.status_id);
+                //         // formdata.append('resolver', Reimbursement.user_id);
+                //         // formdata.append('username', Reimbursement.username);
+                //         let res = await fetch(`http://localhost:8080/reimbursements/${Reimbursement.reimb_id}`, {
+                //             method: 'PATCH',
+                //             headers: {
+                //                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`},
+                //             body: formdata  
+                //         }) 
+                //     if(res.status_id === 200 ) {
+                //         populateReimbursementsTable();
+
+                //     }
+                // });
+
+
+                } //Ends if statement, DO NOT LOSE
             }
                                            
         }
