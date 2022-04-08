@@ -13,6 +13,17 @@
     background-color: rgba(95, 180, 206, 0.966);
 }
 
+.addReimb-table-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .add-btn-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
 
 h1 {
     background-color: rgba(128, 219, 54, 0.548);
