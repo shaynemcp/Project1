@@ -5,7 +5,6 @@ import com.revature.model.Reimbursement;
 import com.revature.model.User;
 import com.revature.utility.ConnectionUtility;
 
-import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

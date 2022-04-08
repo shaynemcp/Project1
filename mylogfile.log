@@ -6510,3 +6510,73 @@ org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps yo
 04 04 2022 - 10:04:21.019 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
 04 04 2022 - 10:04:21.856 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
 04 04 2022 - 10:04:21.857 [main] INFO  io.javalin.Javalin - Javalin started in 885ms \o/
+07 04 2022 - 10:36:57.620 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 10:36:57.644 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @793ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 10:36:57.646 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 10:36:57.698 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 10:36:58.248 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 10:36:58.249 [main] INFO  io.javalin.Javalin - Javalin started in 604ms \o/
+07 04 2022 - 14:07:18.110 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 14:07:18.133 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @812ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 14:07:18.136 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 14:07:18.177 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 14:07:18.762 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 14:07:18.763 [main] INFO  io.javalin.Javalin - Javalin started in 628ms \o/
+07 04 2022 - 14:29:16.317 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 14:29:16.337 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @889ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 14:29:16.338 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 14:29:16.364 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 14:29:16.745 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 14:29:16.746 [main] INFO  io.javalin.Javalin - Javalin started in 408ms \o/
+07 04 2022 - 22:10:03.861 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 22:10:03.957 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @1578ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 22:10:03.960 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 22:10:04.001 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 22:10:05.132 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 22:10:05.132 [main] INFO  io.javalin.Javalin - Javalin started in 1173ms \o/
+07 04 2022 - 22:50:29.376 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 22:50:29.387 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @513ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 22:50:29.388 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 22:50:29.411 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 22:50:29.746 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 22:50:29.747 [main] INFO  io.javalin.Javalin - Javalin started in 359ms \o/

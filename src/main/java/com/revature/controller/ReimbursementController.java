@@ -113,6 +113,7 @@ public class ReimbursementController implements Controller {
         ctx.json(getDto);
     };
 
+    //TODO: Needs only resolver id & status id to be updated
     private Handler updateReimbursementStatus = ctx -> {
         String jwt = ctx.header("Authorization").split(" ")[1];
         Jws<Claims> token = this.jwtService.parseJwt(jwt);
@@ -121,18 +122,17 @@ public class ReimbursementController implements Controller {
             throw new UnauthorizedResponse("You must be a manager to access this endpoint");
         }
 
-        //TODO: Needs only resolver id & status id to be updated
         String reimb_id = ctx.pathParam("reimb_id");
-        String status_id = ctx.formParam("status_id");
-        int resolver = Integer.parseInt(ctx.formParam("resolver"));
-        String username = ctx.formParam("username");
-        String user_id = ctx.formParam("user_id");
-//        String username = jwtService.getClass(username);
+        String status_id = ctx.queryParam("status_id");
+        int resolver = (int) token.getBody().get("user_id");
+//        int resolver = Integer.parseInt(ctx.formParam("resolver"));
+//        String username = ctx.formParam("username");
+//        String user_id = ctx.formParam("user_id");
 
 
-        ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id,user_id);
+        ResolveReimbursementDTO reimbursement = this.reimbursementService.updateReimbursementStatus(reimb_id, status_id); //replace user_id to repair method as well as in reimbursementService()
         reimbursement.setResolver(resolver);
-        reimbursement.setUsername(username);
+//        reimbursement.setUsername(username);
         ctx.json(reimbursement);
     };
 

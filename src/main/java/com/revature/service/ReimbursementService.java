@@ -6,7 +6,6 @@ import com.revature.dto.ResolveReimbursementDTO;
 import com.revature.model.Reimbursement;
 
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +72,7 @@ public class ReimbursementService {
         return dtos;
     }
 
-    public ResolveReimbursementDTO updateReimbursementStatus(String reimbId, String  status, String userId) throws SQLException {
+    public ResolveReimbursementDTO updateReimbursementStatus(String reimbId, String status) throws SQLException {
         try{
 
             System.out.println(reimbId);
@@ -81,10 +80,11 @@ public class ReimbursementService {
 
             int rId = Integer.parseInt(reimbId);
             int sId = Integer.parseInt(status);
-            int uId = Integer.parseInt(userId);
+//            int uId = Integer.parseInt(userId);
+            int managerId = 1;
 
 
-           Reimbursement r =  this.reimbDao.updateReimbursementStatus(rId, sId, uId);
+           Reimbursement r =  this.reimbDao.updateReimbursementStatus(rId, sId, managerId);  //replace 'uId' here & Reimbursement to repair method so params are (rId, sId, uId)
 
            return new ResolveReimbursementDTO(r.getReimb_id(), r.getAmount(), r.getSubmitted(), r.getResolved(), r.getDescription(),
                    r.getAuthor(), r.getResolver(), r.getReimb_status_id(), r.getReimb_type_id(), r.getUsername(),r.getUser_role(), r.getReceipt(), r.getUser_id());
