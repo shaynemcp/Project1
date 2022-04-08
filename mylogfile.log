@@ -6580,3 +6580,17 @@ org.postgresql.util.PSQLException: ResultSet not positioned properly, perhaps yo
 07 04 2022 - 22:50:29.411 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
 07 04 2022 - 22:50:29.746 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
 07 04 2022 - 22:50:29.747 [main] INFO  io.javalin.Javalin - Javalin started in 359ms \o/
+07 04 2022 - 23:28:10.707 [main] INFO  io.javalin.Javalin - 
+       __                      __ _            __ __
+      / /____ _ _   __ ____ _ / /(_)____      / // /
+ __  / // __ `/| | / // __ `// // // __ \    / // /_
+/ /_/ // /_/ / | |/ // /_/ // // // / / /   /__  __/
+\____/ \__,_/  |___/ \__,_//_//_//_/ /_/      /_/
+
+          https://javalin.io/documentation
+
+07 04 2022 - 23:28:10.725 [main] INFO  org.eclipse.jetty.util.log - Logging initialized @538ms to org.eclipse.jetty.util.log.Slf4jLog
+07 04 2022 - 23:28:10.729 [main] INFO  io.javalin.Javalin - Starting Javalin ...
+07 04 2022 - 23:28:10.757 [main] INFO  io.javalin.Javalin - You are running Javalin 4.3.0 (released January 13, 2022).
+07 04 2022 - 23:28:11.188 [main] INFO  io.javalin.Javalin - Listening on http://localhost:8080/
+07 04 2022 - 23:28:11.188 [main] INFO  io.javalin.Javalin - Javalin started in 461ms \o/
