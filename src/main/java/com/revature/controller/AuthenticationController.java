@@ -30,6 +30,8 @@ public class AuthenticationController implements Controller {
         // Chrome has some security settings that prevent the frontend from accessing the
         // custom header "Token" without setting Access-Control-Expose-Headers to a value of *
         ctx.header("Access-Control-Expose-Headers", "*");
+        ctx.header("Access-Control-Allow-Origin", "*");
+//        ctx.header("Access-Control-Allow-Methods", "*");
 
         // Send the JSON web token after logging in back to the client (frontend / postman)
         ctx.header("Token", jwt);
